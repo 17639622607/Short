@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mdao.mapper.RecordMapper">
+    <!--<insert id="insert" parameterType="mdao.entity.Record">-->
+        <!--insert into ${tablename} (long_url,short_url,year_month_,year_month_day_,create_time) values-->
+        <!--(#{record.long_url},#{record.short_url},#{record.year_month_},#{record.year_month_day_},#{record.create_time})-->
+    <!--</insert>-->
+    <insert id="insert" parameterType="mdao.entity.Record">
+        insert into ${tablename} (id,long_url,short_url,year_month_,year_month_day_,create_time) values
+        (#{record.id},#{record.long_url},#{record.short_url},#{record.year_month_},#{record.year_month_day_},#{record.create_time})
+    </insert>
+    <select id="selectMaxId" resultType="Integer">
+        select max(id)+1 from ${tablename}
+    </select>
+    <select id="selectRecordByShortUrl" resultType="mdao.entity.Record" parameterType="String">
+        select * from ${tablename} where binary short_url=#{short_url}
+    </select>
+</mapper>
